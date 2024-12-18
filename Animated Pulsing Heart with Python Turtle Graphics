@@ -1,0 +1,60 @@
+import turtle
+
+# Set the screen
+screen = turtle.Screen()
+screen.bgcolor("black")  # Black background
+
+# Create a turtle object
+pen = turtle.Turtle()
+pen.shape("turtle")
+pen.speed(10)
+pen.color("red")  # The color of the heart is red
+
+# Function to draw the heart shape
+def draw_heart():
+    pen.begin_fill()
+
+    # Draw the left side of the heart
+    pen.left(50)
+    pen.forward(133)
+    pen.circle(50, 200)
+
+    # Draw the right side of the heart
+    pen.right(180)
+    pen.circle(50, 200)
+    pen.forward(133)
+
+    pen.end_fill()
+
+# Function to create the pulsating heart animation
+def heart_beat():
+    for _ in range(3):  # Pulse 3 times
+        pen.clear()  # Clear the previous drawing
+        draw_heart()  # Draw the heart
+        pen.penup()  # Lift the pen
+        pen.goto(0, -30)  # Move the heart slightly up to create the pulse effect
+        pen.pendown()
+        
+        # Create the "grow" effect
+        pen.shapesize(stretch_wid=2, stretch_len=2)
+        turtle.update()  # Update the screen
+
+        turtle.delay(300)  # 300ms delay for a clearer effect
+
+        pen.clear()  # Clear the drawing
+        draw_heart()  # Redraw the heart
+        pen.penup()  # Lift the pen
+        pen.goto(0, -30)  # Move the heart slightly up
+        pen.pendown()
+
+        # Create the "shrink" effect
+        pen.shapesize(stretch_wid=1, stretch_len=1)
+        turtle.update()  # Update the screen
+
+        turtle.delay(300)  # Delay between pulses
+
+# Call the function for the animation
+heart_beat()
+
+# Finish and close the window when clicked
+turtle.done()
